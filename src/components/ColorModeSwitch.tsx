@@ -1,10 +1,4 @@
-import {
-  HStack,
-  Switch,
-  Text,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
 
 /**
  * This file contains switch component for toggling the color mode
