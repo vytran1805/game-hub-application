@@ -8,7 +8,7 @@ import ColorModeSwitch from "./ColorModeSwitch";
 const NavBar = () => {
   // Lay out items horizontally
   return (
-    <HStack justify="space-between" padding="10px">
+    <HStack justify="space-between">
       /* add logo */
       <Image src={logo} boxSize="60px" />
       <ColorModeSwitch />
