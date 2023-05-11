@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {
   id: number;
   name: string;
+  background_image: string;
 }
 // this interface represents the shape of the data, contains Gamep[] array
 interface FetchGamesResponse {
