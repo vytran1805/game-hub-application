@@ -13,6 +13,7 @@ export interface Game {
   background_image: string;
   // This is an array of obj where each obj has an array of props called platform type platform
   parent_platforms: { platform: Platform }[];
+  metacritics: number;
 }
 // this interface represents the shape of the data, contains Gamep[] array
 interface FetchGamesResponse {
