@@ -2,6 +2,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCards from "./GameCards";
 import GameSkeleton from "./GameSkeleton";
+import GameCardContainer from "./GameCardContainer";
 
 /**
  * this component should be only responsible for returning markup and handling user interactions at a high level
@@ -26,9 +27,15 @@ const GameGrid = () => {
       >
         {/* if the loading is true, we map each skeleton to a <GameSkeleton> component */}
         {isLoading &&
-          skeletons.map((skeletons) => <GameSkeleton key={skeletons} />)}
+          skeletons.map((skeletons) => (
+            <GameCardContainer>
+              <GameSkeleton key={skeletons} />
+            </GameCardContainer>
+          ))}
         {games.map((game) => (
-          <GameCards key={game.id} game={game} />
+          <GameCardContainer>
+            <GameCards key={game.id} game={game} />
+          </GameCardContainer>
         ))}
       </SimpleGrid>
     </>
