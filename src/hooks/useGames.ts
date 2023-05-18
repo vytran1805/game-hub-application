@@ -13,7 +13,7 @@ export interface Game {
   background_image: string;
   // This is an array of obj where each obj has an array of props called platform type platform
   parent_platforms: { platform: Platform }[];
-  metacritics: number;
+  metacritic: number;
 }
 // this interface represents the shape of the data, contains Gamep[] array
 interface FetchGamesResponse {
@@ -26,23 +26,30 @@ const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   // empty string for error messages
   const [error, setError] = useState("");
+  // May 17: declare state for loading skeletons
+  const [isLoading, setLoading] = useState(false);
   // call the server by calling axios.get
   // and pass the <FetchGamesResponse> as a generic type argument
   useEffect(() => {
     // create controller obj and set it to an instance of AbortController() handle cancellation
     const controller = new AbortController();
+    setLoading(true); //before fetching API
     apiClient //when making GET request, we pass a controller obj as a signal arg
       .get<FetchGamesResponse>("/games", { signal: controller.signal }) //set signal prop to controller.signal
-      .then((res) => setGames(res.data.results)) //get the results
+      .then((res) => {
+        setGames(res.data.results);
+        setLoading(false); //after fetching API
+      }) //get the results
       .catch((err) => {
         //if error is an instance of CancledError => return
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setLoading(false); //after displaying errors
       }); //catch the errors
     return () => controller.abort();
   }, []); //the array of dependencies to avoid sending request to the backend
   // after we call the effect hook, we return an object with two properties: games and error
-  return { games, error };
+  return { games, error, isLoading };
 };
 
 export default useGames;
