@@ -3,6 +3,7 @@ import useGames from "../hooks/useGames";
 import GameCards from "./GameCards";
 import GameSkeleton from "./GameSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import { Games } from "@mui/icons-material";
 
 /**
  * this component should be only responsible for returning markup and handling user interactions at a high level
@@ -11,7 +12,7 @@ import GameCardContainer from "./GameCardContainer";
  */
 const GameGrid = () => {
   // call useGames() to get an object with two params: games and error
-  const { games, error, isLoading } = useGames();
+  const { data, error, isLoading } = useGames();
   //initialize skeleton array
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
@@ -32,7 +33,7 @@ const GameGrid = () => {
               <GameSkeleton key={skeletons} />
             </GameCardContainer>
           ))}
-        {games.map((game) => (
+        {data.map((game) => (
           <GameCardContainer>
             <GameCards key={game.id} game={game} />
           </GameCardContainer>
