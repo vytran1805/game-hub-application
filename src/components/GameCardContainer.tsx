@@ -5,9 +5,9 @@ import React, { ReactNode } from "react";
 interface Props {
   children: ReactNode; //<GameCard/> and <GameSkeleton/> component
 }
-const GameCardContainer = ({ children }: Props) => {
+const GameCardContainer = ({  children }: Props) => {
   return (
-    <Box maxWidth="300px" borderRadius={5} overflow="hidden">
+    <Box maxWidth="100%" borderRadius={5} overflow="hidden">
       {children}
     </Box>
   );

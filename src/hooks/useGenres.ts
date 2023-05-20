@@ -2,6 +2,7 @@ import useData from "./useData";
 export interface Genre {
   id: number;
   name: string;
+  image_background: string;
 }
 // We don't need this as we defined it in a generic manner
 // interface FetchGenresResponse {

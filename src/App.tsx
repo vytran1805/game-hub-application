@@ -9,11 +9,16 @@ function App() {
   return (
     //create a template object for both mobile and web app
     <Grid
-      padding="10px" //add some padding
       //set the template for Grid
       templateAreas={{
         base: `"nav" "main"`, //For mobile devices: display single column
         lg: `"nav nav" "aside main"`, //For large devices: >= 1024px
+      }}
+      templateColumns={{
+        // set width of the column to 1fr for base scenario
+        base: "1fr",
+        // on lg devices: 200px for 1st column (side panel), 1fr or the rest for 2nd column (Grid card)
+        lg: "200px 1fr",
       }}
     >
       <GridItem area="nav">
@@ -21,7 +26,7 @@ function App() {
       </GridItem>
       {/* Wrap this tag with <Show> to make sure Aside only displays in the large devices */}
       <Show above="lg">
-        <GridItem area="aside">
+        <GridItem area="aside" paddingX={5}>
           <GenreList />
         </GridItem>
       </Show>
