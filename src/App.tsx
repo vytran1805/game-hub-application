@@ -31,7 +31,12 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           {/* Pass the onSelectedGenre prop to <GenreList>. It takes a function that takes Genre obj and we call setSelected Genre */}
-          <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            // this attribute is to style the selected Genre
+            selectedGenre={selectedGenre}
+            // filter the Games by genre
+            onSelectedGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">

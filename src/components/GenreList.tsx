@@ -13,8 +13,10 @@ import getCroppedImageUrl from "../services/image-url";
 interface Props {
   // this onSelectedGenre function takes a Genre obj and returns void
   onSelectedGenre: (genre: Genre) => void;
+  // this attribute is used to highlight the selected genre
+  selectedGenre: Genre | null;
 }
-const GenreList = ({ onSelectedGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   // if any error, display null
   if (error) return null;
@@ -31,6 +33,10 @@ const GenreList = ({ onSelectedGenre }: Props) => {
               src={getCroppedImageUrl(genre.image_background)}
             />
             <Button
+              // if the genre id === selected genre id, make it bold, otherwish, normal
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              // set opacity = 0.8 when hovering over the genre name
+              _hover={{ opacity: 0.8 }}
               onClick={() => onSelectedGenre(genre)}
               fontSize="lg"
               variant="link"
