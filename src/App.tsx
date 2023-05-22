@@ -3,8 +3,11 @@ import NavBar from "./components/NavBar";
 import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
+  // share State between Genre and Game component
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null); //null means no Genre selected
   // Create responsive layout using Grid
   return (
     //create a template object for both mobile and web app
@@ -27,11 +30,12 @@ function App() {
       {/* Wrap this tag with <Show> to make sure Aside only displays in the large devices */}
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <GenreList />
+          {/* Pass the onSelectedGenre prop to <GenreList>. It takes a function that takes Genre obj and we call setSelected Genre */}
+          <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GameGrid />
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );

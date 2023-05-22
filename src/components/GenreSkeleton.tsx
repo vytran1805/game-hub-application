@@ -1,13 +1,4 @@
-import {
-  Card,
-  CardBody,
-  HStack,
-  List,
-  ListItem,
-  Skeleton,
-  SkeletonText,
-} from "@chakra-ui/react";
-import React from "react";
+import { HStack, Skeleton, SkeletonText } from "@chakra-ui/react";
 
 const GenreSkeleton = () => {
   return (
