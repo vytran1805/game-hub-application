@@ -7,13 +7,13 @@ import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
 
+// Query object that contains all the information to query the games
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
 function App() {
-  // share State between Genre and Game component
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null); //null means no Genre selected
-  // share State between Platform and Game component
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   // Create responsive layout using Grid
   return (
     //create a template object for both mobile and web app
@@ -39,21 +39,20 @@ function App() {
           {/* Pass the onSelectedGenre prop to <GenreList>. It takes a function that takes Genre obj and we call setSelected Genre */}
           <GenreList
             // this attribute is to style the selected Genre
-            selectedGenre={selectedGenre}
+            selectedGenre={gameQuery.genre}
             // filter the Games by genre
-            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <PlatformSelector
-          selectedPlatform={selectedPlatform}
-          onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          selectedPlatform={gameQuery.platform} //create and spread gameQuery obj, then add new platform
+          onSelectPlatform={(platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
         />
-        <GameGrid
-          selectedGenre={selectedGenre}
-          selectedPlatform={selectedPlatform}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
