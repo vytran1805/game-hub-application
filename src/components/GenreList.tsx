@@ -12,11 +12,14 @@ import getCroppedImageUrl from "../services/image-url";
 //this prop passes a callback function
 interface Props {
   // this onSelectedGenre function takes a Genre obj and returns void
-  onSelectedGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre) => void;
   // this attribute is used to highlight the selected genre
   selectedGenre: Genre | null;
 }
-const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
+const GenreList = ({
+  selectedGenre,
+  onSelectGenre: onSelectedGenre,
+}: Props) => {
   const { data, isLoading, error } = useGenres();
   // if any error, display null
   if (error) return null;

@@ -5,10 +5,15 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
+import { Platform } from "./hooks/usePlatforms";
 
 function App() {
   // share State between Genre and Game component
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null); //null means no Genre selected
+  // share State between Platform and Game component
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
   // Create responsive layout using Grid
   return (
     //create a template object for both mobile and web app
@@ -36,13 +41,19 @@ function App() {
             // this attribute is to style the selected Genre
             selectedGenre={selectedGenre}
             // filter the Games by genre
-            onSelectedGenre={(genre) => setSelectedGenre(genre)}
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <PlatformSelector />
-        <GameGrid selectedGenre={selectedGenre} />
+        <PlatformSelector
+          selectedPlatform={selectedPlatform}
+          onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+        />
+        <GameGrid
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+        />
       </GridItem>
     </Grid>
   );

@@ -5,20 +5,22 @@ import GameSkeleton from "./GameSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Games } from "@mui/icons-material";
 import { Genre } from "../hooks/useGenres";
+import { Platform } from "../hooks/usePlatforms";
 /**
  * created a prop to pass Selected Genre to the backend
  */
 interface Props {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
 /**
  * this component should be only responsible for returning markup and handling user interactions at a high level
  * => move the logic for making HTTP requests inside a service or the entire logic (States and fetch) inside a hook (useGames.ts)
  * @returns
  */
-const GameGrid = ({ selectedGenre }: Props) => {
+const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
   // call useGames() to get an object with two params: games and error
-  const { data, error, isLoading } = useGames(selectedGenre);
+  const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
   //initialize skeleton array
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
