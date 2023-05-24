@@ -1,3 +1,4 @@
+import noImage from "../assets/no-image-placeholder-6f3882e0.webp";
 /**
  * Define a function that takes url as a string
  * this function will modify the URL to crop the image (syntax: /media/crop/{width}/{heigh})
@@ -5,7 +6,7 @@
  */
 const getCroppedImageUrl = (url: string) => {
   // if the url doesn't exist, return null
-  if (!url) return null;
+  if (!url) return noImage;
   const target = "media/";
   // find the index of the word 'media/' (the cursor now is before 'm') plus the length of it to move the cursor to the end of the word
   const index = url.indexOf(target) + target.length;
