@@ -3,9 +3,6 @@ import useGames from "../hooks/useGames";
 import GameCards from "./GameCards";
 import GameSkeleton from "./GameSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { Games } from "@mui/icons-material";
-import { Genre } from "../hooks/useGenres";
-import { Platform } from "../hooks/usePlatforms";
 import { GameQuery } from "../App";
 /**
  * created a prop to pass Selected Genre to the backend

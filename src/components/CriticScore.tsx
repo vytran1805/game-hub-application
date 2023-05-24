@@ -1,6 +1,4 @@
-import { Badge, background } from "@chakra-ui/react";
-import { color } from "framer-motion";
-import React from "react";
+import { Badge } from "@chakra-ui/react";
 
 interface ScoreProps {
   score: number;

@@ -11,9 +11,8 @@ import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs"; //bootstrap
 
 import { Platform } from "../hooks/usePlatforms";
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { color } from "framer-motion";
 
 interface Props {
   platforms: Platform[]; //this platforms prop is an array of Platform objs (import from useGames.ts)
