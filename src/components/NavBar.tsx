@@ -1,6 +1,7 @@
 import { HStack, Image } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
+import SearchInput from "./SearchInput";
 /**
  *
  * @returns
@@ -8,9 +9,10 @@ import ColorModeSwitch from "./ColorModeSwitch";
 const NavBar = () => {
   // Lay out items horizontally
   return (
-    <HStack justify="space-between">
+    <HStack>
       /* add logo */
       <Image src={logo} boxSize="60px" />
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   );

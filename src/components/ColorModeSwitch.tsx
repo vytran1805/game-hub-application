@@ -25,7 +25,9 @@ const ColorModeSwitch = () => {
         colorScheme="cyan"
       />
       {/* if the colorMode is dark, setText as "Dark mode", otherwise, "Light mode" */}
-      <Text>{colorMode === "dark" ? "Dark mode" : "Light mode"}</Text>
+      <Text whiteSpace="nowrap">
+        {colorMode === "dark" ? "Dark mode" : "Light mode"}
+      </Text>
     </HStack>
   );
 };
