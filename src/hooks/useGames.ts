@@ -15,6 +15,7 @@ export interface Game {
   // This is an array of obj where each obj has an array of props called platform type platform
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  rating_top: number; //whole number
 }
 const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
