@@ -27,9 +27,9 @@ const GameGrid = ({ gameQuery }: Props) => {
 
       {/* // return a list of games, map each game with the <li> element */}
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         padding="10px"
-        spacing={3}
+        spacing={4}
       >
         {/* if the loading is true, we map each skeleton to a <GameSkeleton> component */}
         {isLoading &&
