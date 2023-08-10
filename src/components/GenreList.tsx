@@ -31,6 +31,7 @@ const GenreList = ({
         <ListItem key={genre.id} paddingY="5px">
           <HStack>
             <Image
+              objectFit="cover"
               boxSize="32px"
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
