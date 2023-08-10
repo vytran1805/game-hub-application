@@ -36,6 +36,8 @@ const GenreList = ({
               src={getCroppedImageUrl(genre.image_background)}
             />
             <Button
+              whiteSpace="normal"
+              textAlign="left"
               // if the genre id === selected genre id, make it bold, otherwish, normal
               fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               // set opacity = 0.8 when hovering over the genre name
