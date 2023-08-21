@@ -20,31 +20,28 @@ const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
   //initialize skeleton array
   const skeletons = [1, 2, 3, 4, 5, 6];
-  return (
-    <>
-      {/* Incase of error, display error */}
-      {error && <Text color="red">{error}</Text>}
 
-      {/* // return a list of games, map each game with the <li> element */}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding="10px"
-        spacing={4}
-      >
-        {/* if the loading is true, we map each skeleton to a <GameSkeleton> component */}
-        {isLoading &&
-          skeletons.map((skeletons) => (
-            <GameCardContainer key={skeletons}>
-              <GameSkeleton />
-            </GameCardContainer>
-          ))}
-        {data.map((game) => (
-          <GameCardContainer key={game.id}>
-            <GameCards game={game} />
+  if (error) return <Text color="red">{error}</Text>;
+  return (
+    // return a list of games, map each game with the <li> element
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      padding="10px"
+      spacing={4}
+    >
+      {/* if the loading is true, we map each skeleton to a <GameSkeleton> component */}
+      {isLoading &&
+        skeletons.map((skeletons) => (
+          <GameCardContainer key={skeletons}>
+            <GameSkeleton />
           </GameCardContainer>
         ))}
-      </SimpleGrid>
-    </>
+      {data.map((game) => (
+        <GameCardContainer key={game.id}>
+          <GameCards game={game} />
+        </GameCardContainer>
+      ))}
+    </SimpleGrid>
   );
 };
 
