@@ -1,13 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import useData from "./useData";
-import { Genre } from "./useGenres";
+import apiClient from "../services/api-client";
+import { CACHE_KEY_GAMES } from "./constants";
+import { FetchResponse } from "./useData";
 import { Platform } from "./usePlatforms";
 
-// export interface Platform {
-//   id: number;
-//   name: string;
-//   slug: string;
-// }
 export interface Game {
   id: number;
   name: string;
@@ -18,17 +15,21 @@ export interface Game {
   rating_top: number; //whole number
 }
 const useGames = (gameQuery: GameQuery) =>
-  useData<Game>(
-    "/games",
-    {
-      params: {
-        genres: gameQuery.genre?.id,
-        platforms: gameQuery.platform?.id,
-        ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText,
-      },
-    },
-    [gameQuery]
-  );
+  useQuery<FetchResponse<Game>, Error>({
+    queryKey: [CACHE_KEY_GAMES, gameQuery], //anytime the value in this obj changes, react query will refetch the games from the backend
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Game>>("/games", {
+          //this curly bracket is a configuration obj
+          params: {
+            genres: gameQuery.genre?.id,
+            parent_platforms: gameQuery.platform?.id,
+            ordering: gameQuery.sortOrder,
+            search: gameQuery.searchText,
+          },
+        })
+        .then((res) => res.data),
+    staleTime: 24 * 60 * 60 * 1000, //24hr
+  });
 
 export default useGames;
