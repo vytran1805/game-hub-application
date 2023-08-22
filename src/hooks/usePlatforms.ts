@@ -11,7 +11,7 @@ export interface Platform {
 }
 const usePlatforms = () =>
   useQuery({
-    queryKey: CACHE_KEY_PLATFORMS,
+    queryKey: [CACHE_KEY_PLATFORMS],
     queryFn: () =>
       apiClient
         .get<FetchResponse<Platform>>("/platforms/lists/parents")

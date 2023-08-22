@@ -19,7 +19,7 @@ export interface Genre {
 // const useGenres = () => ({ data: genres, isLoading: false, error: null });
 const useGenres = () => {
   return useQuery({
-    queryKey: CACHE_KEY_GENRES,
+    queryKey: [CACHE_KEY_GENRES],
     queryFn: () =>
       apiClient.get<FetchResponse<Genre>>("/genres").then((res) => res.data),
     staleTime: 24 * 60 * 60 * 1000, //24hr
