@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import apiClient from "../services/api-client";
+import apiClient, { FetchResponse } from "../services/api-client";
 import { CACHE_KEY_GAMES } from "./constants";
-import { FetchResponse } from "./useData";
 import { Platform } from "./usePlatforms";
 
 export interface Game {
