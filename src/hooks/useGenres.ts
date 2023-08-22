@@ -5,19 +5,13 @@ import { CACHE_KEY_GENRES } from "./constants";
 
 // Create an APIClient instance
 const apiClient = new APIClient<Genre>("/genres");
-// create an APIClient instance
-// const apiClient = new APIClient<Genre>("/genres");
+
 export interface Genre {
   id: number;
   name: string;
   image_background: string;
 }
-// We don't need this as we defined it in a generic manner
-// interface FetchGenresResponse {
-//   count: number; //
-//   results: Genre[];
-// }
-// const useGenres = () => ({ data: genres, isLoading: false, error: null });
+
 const useGenres = () => {
   return useQuery({
     queryKey: [CACHE_KEY_GENRES],
