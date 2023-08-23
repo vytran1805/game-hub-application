@@ -4,6 +4,7 @@ import { FetchResponse } from "../services/api-client";
 import { CACHE_KEY_GAMES } from "./constants";
 import { Platform } from "./usePlatforms";
 import APIClient from "../services/api-client";
+import ms from "ms";
 
 // Create an APIClient instance
 const apiClient = new APIClient<Game>("games");
@@ -29,7 +30,7 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
         },
       }),
-    staleTime: 24 * 60 * 60 * 1000, //24hr
+    staleTime: ms("24h"), //24hr
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
