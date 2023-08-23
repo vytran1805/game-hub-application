@@ -11,8 +11,8 @@ import GameHeading from "./components/GameHeading";
 
 // Query object that contains all the information to query the games
 export interface GameQuery {
-  genreId?: number | null;
-  platformId: number | null;
+  genreId?: number | undefined;
+  platformId?: number | undefined;
   sortOrder: string;
   searchText: string;
 }
@@ -59,7 +59,7 @@ function App() {
           <Flex>
             <Box marginRight={5}>
               <PlatformSelector
-                selectedPlatform={gameQuery.platformId} //create and spread gameQuery obj, then add new platform
+                selectedPlatformId={gameQuery.platformId} //create and spread gameQuery obj, then add new platform
                 onSelectPlatform={(platform) =>
                   setGameQuery({ ...gameQuery, platformId: platform.id })
                 }
