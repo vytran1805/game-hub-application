@@ -11,8 +11,8 @@ import GameHeading from "./components/GameHeading";
 
 // Query object that contains all the information to query the games
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId?: number | null;
+  platformId: number | null;
   sortOrder: string;
   searchText: string;
 }
@@ -45,9 +45,11 @@ function App() {
           {/* Pass the onSelectedGenre prop to <GenreList>. It takes a function that takes Genre obj and we call setSelected Genre */}
           <GenreList
             // this attribute is to style the selected Genre
-            selectedGenre={gameQuery.genre}
+            selectedGenreId={gameQuery.genreId}
             // filter the Games by genre
-            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            onSelectGenre={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -57,9 +59,9 @@ function App() {
           <Flex>
             <Box marginRight={5}>
               <PlatformSelector
-                selectedPlatform={gameQuery.platform} //create and spread gameQuery obj, then add new platform
+                selectedPlatform={gameQuery.platformId} //create and spread gameQuery obj, then add new platform
                 onSelectPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platform })
+                  setGameQuery({ ...gameQuery, platformId: platform.id })
                 }
               />
             </Box>
