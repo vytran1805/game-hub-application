@@ -15,10 +15,10 @@ interface Props {
   // this onSelectedGenre function takes a Genre obj and returns void
   onSelectGenre: (genre: Genre) => void;
   // this attribute is used to highlight the selected genre
-  selectedGenre: Genre | null;
+  selectedGenreId?: number | null;
 }
 const GenreList = ({
-  selectedGenre,
+  selectedGenreId,
   onSelectGenre: onSelectedGenre,
 }: Props) => {
   const { data, isLoading, error } = useGenres();
@@ -45,7 +45,7 @@ const GenreList = ({
                 whiteSpace="normal"
                 textAlign="left"
                 // if the genre id === selected genre id, make it bold, otherwish, normal
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 // set opacity = 0.8 when hovering over the genre name
                 _hover={{ opacity: 0.8 }}
                 onClick={() => onSelectedGenre(genre)}
