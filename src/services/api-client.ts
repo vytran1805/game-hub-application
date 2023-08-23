@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { GameQuery } from "../App";
 
 export interface FetchResponse<T> {
   count: number;
   results: T[];
-  next?: string | null;
+  next: string | null;
 }
 
 const axiosInstance = axios.create({
