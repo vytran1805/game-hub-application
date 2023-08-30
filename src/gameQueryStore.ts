@@ -12,20 +12,20 @@ interface GameQuery {
 // Define the shape of the store
 interface GameQueryStore {
   gameQuery: GameQuery;
-  onSelectedGenre: (id: number) => void;
-  onSelectedPlatform: (id: number) => void;
-  onSort: (sort: string) => void;
-  onSearchText: (text: string) => void;
+  setGenreId: (id: number) => void;
+  setPlatformId: (id: number) => void;
+  setSortOrder: (sort: string) => void;
+  setSearchText: (text: string) => void;
 }
 const useGameQueryStore = create<GameQueryStore>((set) => ({
   gameQuery: {},
-  onSelectedGenre: (id) =>
+  setGenreId: (id) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, genreId: id } })), //update the genreId
-  onSelectedPlatform: (id) =>
+  setPlatformId: (id) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, platformId: id } })), //update platformId
-  onSort: (sort: string) =>
+  setSortOrder: (sort: string) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder: sort } })), //update sortOrder
-  onSearchText: (text: string) =>
+  setSearchText: (text: string) =>
     set(() => ({ gameQuery: { searchText: text } })), //add the new object
 }));
 
