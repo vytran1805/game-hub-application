@@ -1,5 +1,4 @@
 import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
-import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GameHeading from "./components/GameHeading";
 import GenreList from "./components/GenreList";
@@ -8,15 +7,8 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
 // Query object that contains all the information to query the games
-export interface GameQuery {
-  genreId?: number | undefined;
-  platformId?: number | undefined;
-  sortOrder: string;
-  searchText: string;
-}
+
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-  // Create responsive layout using Grid
   return (
     //create a template object for both mobile and web app
     <Grid
