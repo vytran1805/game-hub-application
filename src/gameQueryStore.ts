@@ -17,7 +17,7 @@ interface GameQueryStore {
   onSort: (sort: string) => void;
   onSearchText: (text: string) => void;
 }
-create<GameQueryStore>((set) => ({
+const useGameQueryStore = create<GameQueryStore>((set) => ({
   gameQuery: {},
   onSelectedGenre: (id) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, genreId: id } })), //update the genreId
@@ -28,3 +28,5 @@ create<GameQueryStore>((set) => ({
   onSearchText: (text: string) =>
     set(() => ({ gameQuery: { searchText: text } })), //add the new object
 }));
+
+export default useGameQueryStore;
