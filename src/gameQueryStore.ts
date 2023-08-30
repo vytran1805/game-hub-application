@@ -17,4 +17,14 @@ interface GameQueryStore {
   onSort: (sort: string) => void;
   onSearchText: (text: string) => void;
 }
-
+create<GameQueryStore>((set) => ({
+  gameQuery: {},
+  onSelectedGenre: (id) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, genreId: id } })), //update the genreId
+  onSelectedPlatform: (id) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, platformId: id } })), //update platformId
+  onSort: (sort: string) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder: sort } })), //update sortOrder
+  onSearchText: (text: string) =>
+    set(() => ({ gameQuery: { searchText: text } })), //add the new object
+}));
