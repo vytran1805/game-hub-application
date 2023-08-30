@@ -1,23 +1,17 @@
-import { Box, Button, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
-import GameCards from "./GameCards";
-import GameSkeleton from "./GameSkeleton";
-import GameCardContainer from "./GameCardContainer";
-import { GameQuery } from "../App";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-/**
- * created a prop to pass Selected Genre to the backend
- */
-interface Props {
-  gameQuery: GameQuery;
-}
+import useGames from "../hooks/useGames";
+import GameCardContainer from "./GameCardContainer";
+import GameCards from "./GameCards";
+import GameSkeleton from "./GameSkeleton";
+
 /**
  * this component should be only responsible for returning markup and handling user interactions at a high level
  * => move the logic for making HTTP requests inside a service or the entire logic (States and fetch) inside a hook (useGames.ts)
  * @returns
  */
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
   // call useGames() to get an object with two params: games and error
   const {
     data,
@@ -26,7 +20,7 @@ const GameGrid = ({ gameQuery }: Props) => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useGames(gameQuery);
+  } = useGames();
   //initialize skeleton array
   const skeletons = [1, 2, 3, 4, 5, 6];
 
