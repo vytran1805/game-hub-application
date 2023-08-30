@@ -5,15 +5,15 @@ import { GameQuery } from "../App";
 import useGenres from "../hooks/useGenres";
 import usePlatformLookup from "../hooks/usePlatformLookup";
 import useGenreLookup from "../hooks/useGenreLookup";
+import useGameQueryStore from "../gameQueryStore";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-const GameHeading = ({ gameQuery }: Props) => {
+const GameHeading = () => {
+  const genreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
   // find the g (short for genre) where g.id equals given id
-  const genre = useGenreLookup(gameQuery.genreId);
+  const genre = useGenreLookup(genreId);
   // get Platform name from PlatformId
-  const platform = usePlatformLookup(gameQuery.platformId);
+  const platform = usePlatformLookup(platformId);
   const heading = `${platform?.name || ""} ${genre || ""} Games`;
   return (
     <Heading as="h1" marginY={5} fontSize="5xl">
