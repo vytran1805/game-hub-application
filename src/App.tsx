@@ -33,46 +33,27 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar
-          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
-        />
+        <NavBar />
       </GridItem>
       {/* Wrap this tag with <Show> to make sure Aside only displays in the large devices */}
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           {/* Pass the onSelectedGenre prop to <GenreList>. It takes a function that takes Genre obj and we call setSelected Genre */}
-          <GenreList
-            // this attribute is to style the selected Genre
-            selectedGenreId={gameQuery.genreId}
-            // filter the Games by genre
-            onSelectGenre={(genre) =>
-              setGameQuery({ ...gameQuery, genreId: genre.id })
-            }
-          />
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box padding="10px">
-          <GameHeading gameQuery={gameQuery} />
+          <GameHeading />
           <Flex>
             <Box marginRight={5}>
-              <PlatformSelector
-                selectedPlatformId={gameQuery.platformId} //create and spread gameQuery obj, then add new platform
-                onSelectPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platformId: platform.id })
-                }
-              />
+              <PlatformSelector />
             </Box>
             {/* onSelectOrder() takes new sortOrder, then calls setGameQuery, spread the existing gameQuery and add new sort order*/}
-            <SortSelector
-              sortOrder={gameQuery.sortOrder}
-              onSelectOrder={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
-            />
+            <SortSelector />
           </Flex>
         </Box>
-        <GameGrid gameQuery={gameQuery} />
+        <GameGrid />
       </GridItem>
     </Grid>
   );
